@@ -56,18 +56,33 @@ const playRound = (humanChoice, computerChoice) => {
     }
 }
 
-const playGame = () => {
-    while (humanScore < 5 && computerScore < 5){
-        console.log("Round playing...");
-        console.log(playRound(getHumanChoice(), getComputerChoice()));
-        console.log("Your score: ", humanScore);
-        console.log("Computer score: ", computerScore);
-        if (humanScore === 5){
-            return "You win!";
-        } else if (computerScore === 5){
-            return "Computer wins!";
-        }
-    }
-}
+// const playGame = () => {
+//     while (humanScore < 5 && computerScore < 5){
+//         console.log("Round playing...");
+//         console.log(playRound(getHumanChoice(), getComputerChoice()));
+//         console.log("Your score: ", humanScore);
+//         console.log("Computer score: ", computerScore);
+//         if (humanScore === 5){
+//             return "You win!";
+//         } else if (computerScore === 5){
+//             return "Computer wins!";
+//         }
+//     }
+// }
 
-console.log(playGame());
+//console.log(playGame());
+
+const rockbtn = document.getElementById("rock-btn");
+const paperbtn = document.getElementById("paper-btn");
+const scissorsbtn = document.getElementById("scissors-btn");
+
+rockbtn.addEventListener("click", () => {
+    console.log(playRound("rock", getComputerChoice()));
+})
+paperbtn.addEventListener("click", () => {
+    console.log(playRound("paper", getComputerChoice()));
+})
+scissorsbtn.addEventListener("click", () => {
+    console.log(playRound("scissors", getComputerChoice()));
+})
+
