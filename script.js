@@ -1,5 +1,3 @@
-console.log("Hello world!");
-
 const getComputerChoice = () => {
     let num = Math.floor(Math.random()*3) + 1;
     if (num === 1) return "rock";
@@ -26,34 +24,52 @@ const getHumanChoice = () => {
 let humanScore = 0, computerScore = 0;
 
 const playRound = (humanChoice, computerChoice) => {
+    let msg = "";
+
     if (humanChoice === computerChoice) {
-        return "The round is a tie!";
+        msg = "The round is a tie!";
     }
-    if (humanChoice === "rock"){
+    else if (humanChoice === "rock"){
         if (computerChoice === "paper"){
             computerScore++;
-            return "Computer wins! Paper beats Rock!";
+            msg= "Computer wins! Paper beats Rock!";
         } else {
             humanScore++; 
-            return "You win! Rock beats Scissors!"; 
+            msg= "You win! Rock beats Scissors!"; 
         } 
     } else if (humanChoice === "paper"){
         if (computerChoice === "scissors"){
             computerScore++;
-            return "Computer wins! Scissors beats Paper!";
+            msg= "Computer wins! Scissors beats Paper!";
         } else {
             humanScore++;
-            return "You win! Paper beats Rock!";
+            msg= "You win! Paper beats Rock!";
         }
     } else {
         if (computerChoice === "paper"){
             computerScore++;
-            return "Computer wins! Paper beats Rock!";
+            msg= "Computer wins! Paper beats Rock!";
         } else {
             humanScore++;
-            return "You win! Scissors beats Paper!";
+            msg= "You win! Scissors beats Paper!";
         }
     }
+
+    const display = document.querySelector("#game-display");
+    display.innerHTML="";
+
+    const result = document.createElement("h1");
+    result.textContent = msg;
+
+    const humanScoreTxt = document.createElement("h2");
+    const computerScoreTxt = document.createElement("h2");
+
+    humanScoreTxt.textContent = "Your score: " + humanScore;
+    computerScoreTxt.textContent = "Computer score: " + computerScore;
+
+    display.appendChild(result);
+    display.appendChild(humanScoreTxt);
+    display.appendChild(computerScoreTxt);
 }
 
 // const playGame = () => {
@@ -77,12 +93,12 @@ const paperbtn = document.getElementById("paper-btn");
 const scissorsbtn = document.getElementById("scissors-btn");
 
 rockbtn.addEventListener("click", () => {
-    console.log(playRound("rock", getComputerChoice()));
+    playRound("rock", getComputerChoice());
 })
 paperbtn.addEventListener("click", () => {
-    console.log(playRound("paper", getComputerChoice()));
+    playRound("paper", getComputerChoice());
 })
 scissorsbtn.addEventListener("click", () => {
-    console.log(playRound("scissors", getComputerChoice()));
+    playRound("scissors", getComputerChoice());
 })
 
